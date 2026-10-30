@@ -4,18 +4,21 @@ import pets from "./pets.js";
 const app = express();
 const port = 3000;
 
-
 app.get("/", (requisicao, resposta) => {
-    resposta.send(pets)
-})
+    resposta.send(pets);
+});
 
+app.get("/:tutor", (requisicao, resposta) => {
 
-app.get("/:nome", (requisicao, resposta) => {
+    const tutorInformado = requisicao.params.tutor.toLowerCase();
 
-    const nomeInformado = requisicao.params.nome.toLowerCase();
-    const pet = pets.find((infopet) => infopet.nome === nomeInformado)
+    const pet = pets.find(
+        (infopet) => infopet.tutor.toLowerCase() === tutorInformado
+    );
 
     resposta.send(pet);
-})
+});
 
-app.listen(port, () => console.log(`Servidor rodando com sucesso na porta ${port}`));
+app.listen(port, () => {
+    console.log(`Servidor rodando com sucesso na porta ${port}`);
+});
