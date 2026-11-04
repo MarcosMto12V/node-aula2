@@ -19,6 +19,18 @@ app.get("/:tutor", (requisicao, resposta) => {
     resposta.send(pet);
 });
 
+for (let campo of campos) {
+
+    nomeSelecionado[campo] = req.body[campo];
+
+}
+
+    res.status(200).send(nomeSelecionado)
+app.post("/", (req, res) => {
+    const novoPet = req.body;~
+    pets.push (novoPet);
+    res.status(200).send(novoPet);
+})
 app.listen(port, () => {
     console.log(`Servidor rodando com sucesso na porta ${port}`);
 });
